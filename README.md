@@ -6,11 +6,10 @@ This is an artifact package for the ICSE 2024 paper "Ripples of a Mutation — A
 - We aim to earn available and reusable badges as our artifact provides a practical framework for RIPR analysis in mutation testing which may be applicable to more subject projects and may be valuable to other mutant-based downstream research. 
 
 ## Provenance 
-This artifact and the related paper can be obtained XXXX
+This artifact and the related paper can be obtained through link XXXXXXXXXXXXX
 
 ## Data
-
-The data presented in the paper are under the data directory where two zip files contain the CSV dataset for 10 subject projects. The fields of the CSV dataset are explained below: 
+The data presented in the paper are under the data directory where two zip files contain the CSV dataset for 10 subject projects. For simplicity, the fields of the CSV dataset are explained in the Zenodo artifact packaage
 | Field               | Description                                                 |
 |---------------------|-------------------------------------------------------------|
 | m_id | mutation id (hashed) |
