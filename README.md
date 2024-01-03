@@ -77,7 +77,14 @@ The experiment in the paper was done on a MacBook 2021 Pro version.
 
 ### Raw Data Organization
 
-Under **everything directory**, one could understand the organizing structure of raw data of RIPR analysis: 1) each zip file contains raw data for one mutation and the name of the zip file is the hashed value of the mutation. 2) mutationInfo.txt contains detailed information about a mutation. 3) testInfo.txt contains the all test run's names. 4) status.txt contains the mutation's status 5) killingTests.txt and failingReasons.txt contain failing test run names and their exceptional information. 6) MRs.txt and NMRs.txt contain all the instrumented probe information. 7) state info related to mutation-run and no-mutation-run are stored under the MR and NMR directory. 8) Under NMR directory, each test case have 10 no-mutation test runs where the prefix number indicates the corresponding test run out of all 10 NMRs; NMR.xml stores the infection info, AfterAll.xml and AfterAllStatic.xml store the propagation info, stateInfo.txt stores the probe info for the current test run; The MR directory is organized in similar ways except there is only one test run per test case for a mutation.
+Under **everything directory**, one could understand the organizing structure of raw data of RIPR analysis: 
+  1) each zip file contains raw data for one mutation and the name of the zip file is the hashed value of the mutation.
+  2) mutationInfo.txt contains detailed information about a mutation.
+  3) testInfo.txt contains the all test run's names.
+  4) status.txt contains the mutation's status
+  5) killingTests.txt and failingReasons.txt contain failing test run names and their exceptional information.
+  6) MRs.txt and NMRs.txt contain all the instrumented probe information.
+  7) state info related to mutation-run and no-mutation-run are stored under the MR and NMR directory.
+  8) Under NMR directory, each test case have 10 no-mutation test runs where the prefix number indicates the corresponding test run out of all 10 NMRs; NMR.xml stores the infection info, AfterAll.xml and AfterAllStatic.xml store the propagation info, stateInfo.txt stores the probe info for the current test run; The MR directory is organized in similar ways except there is only one test run per test case for a mutation.
 
-###
 
