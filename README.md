@@ -9,33 +9,10 @@ This is an artifact package for the ICSE 2024 paper "Ripples of a Mutation — A
 This artifact and the related paper can be obtained through link XXXXXXXXXXXXX
 
 ## Data
-The data presented in the paper are under the data directory where two zip files contain the CSV dataset for 10 subject projects. For simplicity, the fields of the CSV dataset are explained in the Zenodo artifact packaage
-| Field               | Description                                                 |
-|---------------------|-------------------------------------------------------------|
-| m_id | mutation id (hashed) |
-| mutation_status         | KILLED or SURVIVED                          |
-| mutator       | mutation operator                          |
-| test_name | the name of the test case                             |
-| test_status             | pass/fail                                       |
-| mr_m_1st    | the number of times the mutated method is executed after the first mutation execution | 
-| mr_m_all            | the number of times the mutated method is executed in the whole mutation run                             |
-| mr_e         | 1 if the mutation was executed else 0                                         |
-| nmr_m_all          | the number of times the method of concern is executed in a no-mutation run           |
-| middle_same          | True: if there is infection else False                   |
-| end_same                | True: if there is propagation only based on the states dumped on test finishes (if a test fails, there is still propagation)|
-|mr_return         | 1 if the mutated method exits through Return else 0|
-|mr_athrow    | 1 if the mutated method exits through Athrow else 0|
-|mr_exception  | 1 if the mutated method exits through exogenous crashes else 0|
-|nmr_return   | 1 if the method of concern in no-mutation run exits through Return else 0|
-|nmr_athrow    | 1 if the method of concern in no-mutation run exits through Athrow else 0|
-|nmr_exception   | 1 if the method of concern in no-mutation run exits through Exception else 0|
-|MR_len_before | number of method executions before mutation is executed in a mutation test run|
-|MR_len_after | number of method executions of a test run in a mutation test run|
-|NMR_len_avg | average number of method executions in 10 no-mutation test runs|
-
+The data presented in the paper are under the data directory where two zip files contain the CSV dataset for 10 subject projects. For simplicity, the fields of the CSV dataset are explained in the Zenodo artifact package
 
 ## Setup
-Executing RIPR analysis for each subject project present in the paper can span from several hours to up to four days, depending on project size as this process necessitates ten supplementary non-mutation test runs for each mutation test run with additional probes that synchronize two test runs with and without mutation execution, check state infection, and propagation. Moreover, storage requirements for memory data range up to 300 GB per subject project.
+Executing RIPR analysis for each subject project present in the paper can span from several hours to up to 4-5 days, depending on project size as this process necessitates ten supplementary non-mutation test runs for each mutation test run, together with additional probes that synchronize two test runs with and without mutation execution, check state infection, and propagation. Moreover, storage requirements for memory data range up to 300 GB per subject project.
 
 As such, we configured dual Docker containers to accommodate both Intel and ARM architectures, thereby illustrating the pipelines and configuration of our experimental setup for running RIPR (and mutation) analyses locally pertinent to a production class and a test class from our Apache commons-text subject program. Furthermore, we provide guidance on tailoring the RIPR analysis beyond the Docker environment, with the possibility of modifying the code to pave the way for future research endeavors.
 
