@@ -55,7 +55,7 @@ docker pull qinfendeheichi/text-arm:latest
 docker run --name arm qinfendeheichi/text-arm
 ```
 Copy Docker Configuration
-The Dockerfile demonstrates a minimal example that contains configuration for Apache commons-text subject program
+This Dockerfile demonstrates a minimal example that contains configuration for Apache commons-text subject program
 ```
 docker cp arm:/commons-text/project/Dockerfile .
 ```
