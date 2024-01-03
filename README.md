@@ -44,8 +44,7 @@ Requirements:
 Docker tutorial example: Latest Version of Docker installed. 
 
 ## Usage
-### Docker Examples:
-Please use the latest Docker versions. 
+### Basic Usage through Docker Examples:
 
 For Arm-based laptops:
 
@@ -72,7 +71,10 @@ docker cp arm:/commons-text/project/target/everything/ .
 **everything directory** contains the raw data organization structure where each zip file contains data for one mutation
 For Intel-based laptops
 
+### Major Result Illustration from the CSVs
 The experiment in the paper was done on a MacBook 2021 Pro version.
+
+
 ## Raw Data Explanation and Beyond Dockers
 
 ### Raw Data Organization
