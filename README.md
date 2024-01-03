@@ -50,22 +50,11 @@ For Intel-based laptops
 
 ### Raw Data Explanation
 
-
-Under **everything directory**, one could understand the organizing structure of raw data of RIPR analysis: 
-  1) each zip file contains raw data for one mutation and the name of the zip file is the hashed value of the mutation.
-  2) mutationInfo.txt contains detailed information about a mutation.
-  3) testInfo.txt contains the all test run's names.
-  4) status.txt contains the mutation's status
-  5) killingTests.txt and failingReasons.txt contain failing test run names and their exceptional information.
-  6) MRs.txt and NMRs.txt contain all the instrumented probe information.
-  7) state info related to mutation-run and no-mutation-run are stored under the MR and NMR directory.
-  8) Under NMR directory, each test case have 10 no-mutation test runs where the prefix number indicates the corresponding test run out of all 10 NMRs; NMR.xml stores the infection info, AfterAll.xml and AfterAllStatic.xml store the propagation info, stateInfo.txt stores the probe info for the current test run; The MR directory is organized in similar ways except there is only one test run per test case for a mutation.
-
-
+Under **everything directory**, each zip file represents data related to one mutation. More information related to the organization of raw data is explained in the Zenodo artfiact's Readme file.
 
 ### Major Result Illustration from the CSVs
 
-The following docker image translates the csv data into sankey diagrams as presented in Figure 3 in the paper.
+The following docker image translates the CSV data into Sankey diagrams as presented in Figure 3 in the paper, which are the major results in the paper.
 
 Run
 ``` 
@@ -73,12 +62,11 @@ docker pull qinfendeheichi/getsankey:latest
 docker run --name sannkey qinfendeheichi/getsankey
 ```
 
-then get individual sankey diagrams 
+then get individual Sankey diagrams 
 ```
 docker cp getsankey:commons-textsankey.png . 
 ```
 Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for all other sankey diagrams.
 
-### Directory Structure Beyond Docker
-We provide the configuration of all subject projects present in the paper under the "subjects" directory. All CSV data is under the "data" directory. All Sankey diagrams for individual mutation operators (RQ4) are present under the "mutator_ripples" directory.
-
+### Beyond Docker
+We also provide additional information on the reuse of the artifact in the Zenodo artifact's Readme file.
