@@ -1,0 +1,2 @@
+Before Running the Experiment, place corresponding jar files from jars to under subject project's directory that contains POM file.
+s.jar instruments the production classes, p.jar and t.jar instrument the test classes.
