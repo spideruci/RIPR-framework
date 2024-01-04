@@ -101,7 +101,7 @@ Under **everything directory**, one could understand the organizing structure of
 
 The following docker image translates the csv data into sankey diagrams as presented in Figure 3 in the paper.
 
-Run
+### For Arm-based machines, run
 ``` 
 docker pull qinfendeheichi/getsankey:latest
 docker run --name sannkey qinfendeheichi/getsankey
@@ -109,8 +109,15 @@ docker run --name sannkey qinfendeheichi/getsankey
 
 then get individual Sankey diagrams 
 ```
-docker cp getsankey:commons-textsankey.png . 
+docker cp sankey:commons-textsankey.png . 
 ```
+### For Amd-based machines, run
+``` 
+docker pull qinfendeheichi/getsankeyamd:latest
+docker run --name sannkeyamd qinfendeheichi/getsankeyamd
+docker cp sankeyamd:commons-textsankey.png . 
+```
+
 Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for all other sankey diagrams.
 
 # Set Up Beyond Docker
