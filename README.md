@@ -51,13 +51,13 @@ Executing RIPR analysis for each subject project present in the paper can span f
 As such, we configured dual Docker containers to accommodate both Intel and ARM architectures, thereby illustrating the pipelines and configuration of our experimental setup for running RIPR (and mutation) analyses locally pertinent to a production class and a test class from our Apache commons-text subject program. Furthermore, we provide guidance on tailoring the RIPR analysis beyond the Docker environment, with the possibility of modifying the code to pave the way for future research endeavors.
 
 Requirements:
-Docker tutorial example: Latest Version of Docker installed. 
-Beyond Docker: For customized experiments for projects outside of the paper, subject projects shall use the Junit5 framework, using maven as a built system, and support running with Pitest, each test class shall have methods with @BeforeAll and @AfterAll methods. 
+For Docker tutorial example: Must have the latest version of Docker installed.
+General Requirments on Subject Projects: 1) Subject projects should utilize the Junit5 framework. 2) Maven must be used as the build system. 3) Compatibility with Pitest is required. 4) Each test class should include methods annotated with @BeforeAll and @AfterAll.
 
 # Usage
 ## Basic Usage through Docker Examples:
 
-For Arm-based laptops:
+For ARM-based laptops:
 
 pull the image and run the container
 ``` 
@@ -65,7 +65,7 @@ docker pull qinfendeheichi/text-arm:latest
 docker run --name arm qinfendeheichi/text-arm
 ```
 Copy Docker Configuration
-This Dockerfile demonstrates a minimal example that contains configuration for Apache commons-text subject program
+This Dockerfile demonstrates a minimal example that contains configuration for the Apache commons-text subject program
 ```
 docker cp arm:/commons-text/project/Dockerfile .
 ```
@@ -77,13 +77,11 @@ docker cp arm:/commons-text/project/0sankey.png .
 docker cp arm:/commons-text/project/target/everything/ .
 ```
 
-**hashResult.csv** contains formatted processed data. 
-**0snakey.png** demonstrates an example of localized RIPR analysis for a production class and test class for the Apache commons-text subject program. 
-**everything directory** contains the raw data organization structure where each zip file contains data for one mutation
-For Intel-based laptops
+**hashResult.csv:** contains CSV-formatted processed data. 
+**0snakey.png:** demonstrates an example of localized RIPR analysis for a specific production class and test class for the Apache commons-text subject program. 
+**everything directory:** This directory houses the raw data organization structure. Each compressed (zip) file within this directory encapsulates data pertaining to a specific mutation.
 
 ## Raw Data Explanation
-
 
 Under **everything directory**, one could understand the organizing structure of raw data of RIPR analysis: 
   1) each zip file contains raw data for one mutation and the name of the zip file is the hashed value of the mutation.
@@ -95,11 +93,30 @@ Under **everything directory**, one could understand the organizing structure of
   7) state info related to mutation-run and no-mutation-run are stored under the MR and NMR directory.
   8) Under NMR directory, each test case have 10 no-mutation test runs where the prefix number indicates the corresponding test run out of all 10 NMRs; NMR.xml stores the infection info, AfterAll.xml and AfterAllStatic.xml store the propagation info, stateInfo.txt stores the probe info for the current test run; The MR directory is organized in similar ways except there is only one test run per test case for a mutation.
 
+Under the **everything directory**, the organization of each mutation's raw data for RIPR analysis is as follows:
+
+1. **Zip Files**: Each zip file contains raw data for one mutation, with the file name being the hashed value of that mutation.
+2. **mutationInfo.txt**: This file holds detailed information about each mutation.
+3. **testInfo.txt**: Lists the names of all test runs.
+4. **status.txt**: Details the status of each mutation.
+5. **killingTests.txt and failingReasons.txt**: These files contain the names of failing test runs and their respective exceptional information.
+6. **MRs.txt and NMRs.txt**: Include all information regarding instrumented probes for mutation-run (MR) and no-mutation-run (NMR).
+7. **MR and NMR Directories**: Store state information related to mutation-run (MR) and no-mutation-run (NMR). 
+    - Under the NMR directory:
+        - Each test case has 10 no-mutation test runs.
+        - The prefix number of each test run indicates its order among the 10 NMRs.
+        - **NMR.xml**: Stores infection information.
+        - **AfterAll.xml** and **AfterAllStatic.xml**: Contain propagation information.
+        - **stateInfo.txt**: Provides probe information for the current test run.
+    - The MR directory:
+        - Organized similarly to the NMR directory.
+        - Contains only one test run per test case for a mutation.
+
 
 
 ## Major Result Illustration from the CSVs
 
-The following docker image translates the csv data into sankey diagrams as presented in Figure 3 in the paper.
+The Docker image provided facilitates the translation of CSV data into Sankey diagrams, as exemplified in Figure 3 of the paper. These diagrams constitute the core results presented in our study.
 
 ### For Arm-based machines, run
 ``` 
@@ -118,14 +135,16 @@ docker run --name sannkeyamd qinfendeheichi/getsankeyamd
 docker cp sankeyamd:commons-textsankey.png . 
 ```
 
-Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for all other sankey diagrams.
+Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for sankey diagrams from other projects.
 
 # Set Up Beyond Docker
 
-The Dockerfile demonstrates a minimal example of experimental configuration. Here we explain more about the functionalities of different modularities in the experiment. 
+The Dockerfile provides a minimal example of the experimental configuration. In this section, we delve deeper into the functionalities of different modules used in the experiment.
 
-Under the code directory, PIT_STATE_DEV_with_len contains the source code of modified PIT customized in our experiment; PreTestInstrumenter contains the source code that instruments the test classes, which references variables to a collection; TestInstrumenter instruments test classes that surround test methods with try-catch blocks; sourceCodeInstrumenter instruments the production classes. Their corresponding jar files are named "p.jar", "t.jar", and "s.jar". 
-
-For projects outside of the paper, it is expected that the projects use Junit5's framework, work with PIT, and have "@BeforeAll" and "AfterAll" for each test class, where states are initialized and dumped. 
-
+## Code Directory Structure
+- **PIT_STATE_DEV_with_len**: Contains the source code of the modified PIT, customized for our experiment.
+- **PreTestInstrumenter**: Houses source code for instrumenting test classes. This module references variables to a collection.
+- **TestInstrumenter**: Instruments test classes by surrounding test methods with try-catch blocks.
+- **SourceCodeInstrumenter**: Instruments the production classes.
+- The corresponding JAR files for these modules are named `p.jar`, `t.jar`, and `s.jar`, respectively.
 
