@@ -83,7 +83,7 @@ docker run --name sannkey qinfendeheichi/getsankey
 
 then get individual Sankey diagrams 
 ```
-docker cp getsankey:commons-textsankey.png . 
+docker cp sankey:commons-textsankey.png . 
 ```
 Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for all other sankey diagrams.
 
