@@ -9,16 +9,16 @@ This is an artifact package for the ICSE 2024 paper "Ripples of a Mutation — A
 This artifact and the related paper can be obtained through Zenodo link XXXXXXXXXXXXX
 
 # Data
-The data supporting the findings of this paper are organized under the 'data' directory, where two compressed (zip) files contain the CSV datasets for 10 subject projects. For page-limitation, the fields within these CSV datasets are thoroughly explained in the accompanying Zenodo artifact package.
+The data supporting the findings of this paper are organized under the 'data' directory, where two compressed (zip) files contain the CSV datasets for 10 subject projects. Due to the page limit, the fields within these CSV datasets are thoroughly explained in the accompanying Zenodo artifact package.
 
 # Setup
-Executing RIPR analysis for each subject project present in the paper can span from several hours to up to 4-5 days, depending on project size as this process necessitates ten supplementary non-mutation test runs for each mutation test run, together with additional probes that synchronize two test runs with and without mutation execution, check state infection, and propagation. Moreover, storage requirements for memory data range up to 300 GB per subject project.
+Executing RIPR analysis for each subject project present in the paper can span from several hours to up to 4&ndash;5 days, depending on project size as this process necessitates ten supplementary non-mutation test runs for each mutation test run, together with additional probes that synchronize two test runs with and without mutation execution, check state infection, and propagation. Moreover, storage requirements for memory data range up to 300 GB per subject project.
 
-As such, we configured dual Docker containers to accommodate both Intel and ARM architectures, thereby illustrating the pipelines and configuration of our experimental setup for running RIPR (and mutation) analyses locally pertinent to a production class and a test class from our Apache commons-text subject program. Furthermore, we provide guidance on tailoring the RIPR analysis beyond the Docker environment, with the possibility of modifying the code to pave the way for future research endeavors.
+As such, we configured dual Docker containers to accommodate both Intel/AMD and ARM architectures, thereby illustrating the pipelines and configuration of our experimental setup for running RIPR (and mutation) analyses locally pertinent to a production class and a test class from our Apache commons-text subject program. Furthermore, we provide guidance on tailoring the RIPR analysis beyond the Docker environment, with the possibility of modifying the code to pave the way for future research endeavors.
 
 Requirements:
 For Docker tutorial example: Must have the latest version of Docker installed.
-General Requirments on Subject Projects: 1) Subject projects should utilize the Junit5 framework. 2) Maven must be used as the build system. 3) Compatibility with Pitest is required. 4) Each test class should include methods annotated with @BeforeAll and @AfterAll.
+General Requirments on Subject Projects: 1) Subject projects should utilize the JUnit5 framework. 2) Maven must be used as the build system. 3) Compatibility with PITest is required. 4) Each test class should include methods annotated with @BeforeAll and @AfterAll.
 
 # Usage
 ## Basic Usage through Docker Examples:
@@ -43,7 +43,7 @@ docker cp arm:/commons-text/project/0sankey.png .
 docker cp arm:/commons-text/project/target/everything/ .
 ```
 
-### For AMD-based laptops:
+### For Intel/AMD-based laptops:
 
 pull the image and run the container
 ``` 
@@ -70,7 +70,7 @@ docker cp amd:/commons-text/project/target/everything/ .
 
 The Docker image provided facilitates the translation of CSV data into Sankey diagrams, as exemplified in Figure 3 of the paper. These diagrams constitute the core results presented in our study.
 
-### For Arm-based machines, run
+### For ARM-based machines, run
 ``` 
 docker pull qinfendeheichi/getsankey:latest
 docker run --name sannkey qinfendeheichi/getsankey
@@ -80,14 +80,14 @@ then get individual Sankey diagrams
 ```
 docker cp sankey:commons-textsankey.png . 
 ```
-### For Amd-based machines, run
+### For Intel/AMD-based machines, run
 ``` 
 docker pull qinfendeheichi/getsankeyamd:latest
 docker run --name sannkeyamd qinfendeheichi/getsankeyamd
 docker cp sankeyamd:commons-textsankey.png . 
 ```
 
-Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for sankey diagrams from other projects.
+Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for Sankey diagrams from other projects.
 
 
 ## Beyond Docker
