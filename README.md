@@ -6,7 +6,7 @@ This is an artifact package for the ICSE 2024 paper "Ripples of a Mutation — A
 - We aim to earn available and reusable badges. This framework is not only applicable to subject projects in the paper but may potentially apply to a broader range of subject projects and also holds significant value for other mutant-based downstream research endeavors.
 
 # Provenance 
-This artifact and the related paper can be obtained through Zenodo link XXXXXXXXXXXXX
+This artifact and the related paper can be obtained through Zenodo link https://zenodo.org/records/10460085.
 
 # Data
 The data supporting the findings of this paper are organized under the 'data' directory, where two compressed (zip) files contain the CSV datasets for 10 subject projects. Due to the page limit, the fields within these CSV datasets are thoroughly explained in the accompanying Zenodo artifact package.
