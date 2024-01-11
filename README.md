@@ -73,7 +73,7 @@ The Docker image provided facilitates the translation of CSV data into Sankey di
 ### For ARM-based machines, run
 ``` 
 docker pull qinfendeheichi/getsankey:latest
-docker run --name sannkey qinfendeheichi/getsankey
+docker run --name sankey qinfendeheichi/getsankey
 ```
 
 then get individual Sankey diagrams 
@@ -83,7 +83,7 @@ docker cp sankey:commons-textsankey.png .
 ### For Intel/AMD-based machines, run
 ``` 
 docker pull qinfendeheichi/getsankeyamd:latest
-docker run --name sannkeyamd qinfendeheichi/getsankeyamd
+docker run --name sankeyamd qinfendeheichi/getsankeyamd
 docker cp sankeyamd:commons-textsankey.png . 
 ```
 
