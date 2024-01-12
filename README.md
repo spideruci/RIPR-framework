@@ -167,7 +167,7 @@ docker cp sankeyarm:RQ4Script.py .
 
 Run
 ```
-docker cp sankeyarm:commons-textsankey.png .
+docker cp sankeyarm:commons-text.pdf .
 ```
 Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for Sankey diagrams from other projects. They correspond to Figure 3 of the paper. These diagrams constitute the core results presented in our study.
 
