@@ -210,5 +210,26 @@ Under the PITest project directory (PIT_STATE_DEV_with_len) Run
 mvn clean install -Dmaven.test.skip
 ```
 
-## 
+## Prepare instrumentation jar files
+Before Running the Experiment for the subject projects, place the corresponding jar files under the subject project's directory that contains the POM file.
+s.jar instruments the production classes, p.jar and t.jar instruments the test classes, which are generated in SourceCodeInstrumente, PreTestInstrumenter, and TestInstrumenter projects. They could be customized and produced individually by running:
+```
+mvn clean compile assembly:single test-compile
+```
+
+## Run mutation analysis
+Run:
+```
+mvn clean compile test-compile
+cp staticFields.txt target
+cp GlobalStates.txt target
+mkdir target/staticFields
+java -jar "p.jar" target/test-classes
+java -jar "t.jar" target/test-classes
+java -jar "s.jar" target/classes
+mvn "-Dmaven.main.skip" pitest:mutationCoverage >info.txt 2>result.txt
+```
+
+The above experimental logic could be reasoned from the Dockerfile we provide in the Docker environment. 
+
 
