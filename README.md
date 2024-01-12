@@ -153,11 +153,13 @@ docker run --name sankeyamd qinfendeheichi/getsankeyamd
 
 The container may take around 1-2 minutes to run. 
 We provide the Docker file and interpreting scripts inside of the Docker image that demonstrates how to get the major results in our paper.
+
+Replace "arm" with "amd" if the laptop is an Intel/AMD-based machine in the following instructions if necessary.
 To get the docker configuration file, run
 ``` 
 docker cp sankeyarm:Dockerfile . 
 ```
-The interpreting scripts for RQ1 to RQ4 are named getSankey.py, RQ2Script.py, RQ3Script.py, RQ4Script.py. Replace "arm" with "amd" if the laptop is an Intel/AMD-based machine. To check out those scripts, run
+The interpreting scripts for RQ1 to RQ4 are named getSankey.py, RQ2Script.py, RQ3Script.py, RQ4Script.py. To check out those scripts, run
 ``` 
 docker cp sankeyarm:getSankey.py .
 docker cp sankeyarm:RQ1Script.py .
