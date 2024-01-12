@@ -151,7 +151,7 @@ docker run --name sankeyamd qinfendeheichi/getsankeyamd
 
 ```
 
-The container may take around 1-2 minutes to run. 
+The container may take around 2 minutes to run. 
 We provide the Docker file and interpreting scripts inside of the Docker image that demonstrates how to get the major results in our paper.
 
 Replace "arm" with "amd" if the laptop is an Intel/AMD-based machine in the following instructions if necessary.
