@@ -187,7 +187,7 @@ The figure is the one shown in Figure 4 in the paper.
 # RQ4
 Run
 ```
-docker cp sankeyarm:PrimitiveReturn(36338)Sankey.pdf .
+docker cp sankeyarm:"PrimitiveReturn(36338)Sankey.pdf" .
 ```
 Replace PrimitiveReturn(36338)Sankey.pdf with EmptyObjectReturn(27855)Sankey.pdf/BooleanTrue(44547)Sankey.pdf/BooleanFalse(33633)Sankey.pdf/increment(6515)Sankey.pdf/Math(135194)Sankey.pdf/NullReturns(97187)Sankey.pdf/VoidMethodCall(207997)Sankey.pdf/NegateConditional(439264)Sankey.pdf/ConditionalBoundary(134505)Sankey.pdf for Sankey diagrams from other mutation operators. These figures show the RIPR effects of individual mutation operators as shown in Figure 5 in the paper.
 
