@@ -180,7 +180,7 @@ The major results of RQ2 are presented in the terminal, which is presented in Ta
 ## RQ3
 Run
 ```
-docker cp sankeyarm:RQ3.png .
+docker cp sankeyarm:RQ3.pdf .
 ```
 The figure is the one shown in Figure 4 in the paper.
 
