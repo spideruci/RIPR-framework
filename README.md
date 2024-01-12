@@ -136,7 +136,7 @@ Under the **everything directory**, the organization of each mutation's raw data
 
 ## Major Result Illustration from the CSVs
 
-The Docker image provides the scripts and running configuration for getting major results for research questions from RQ1 to RQ4. 
+The Docker image is equipped with scripts and configuration settings necessary for generating key findings related to research questions RQ1 through RQ4. Execution of the container typically requires approximately two minutes.
 
 ### For ARM-based machines, run
 ``` 
@@ -151,15 +151,12 @@ docker run --name sankeyamd qinfendeheichi/getsankeyamd
 
 ```
 
-The container may take around 2 minutes to run. 
-We provide the Docker file and interpreting scripts inside of the Docker image that demonstrates how to get the major results in our paper.
-
-Replace "arm" with "amd" if the laptop is an Intel/AMD-based machine in the following instructions if necessary.
-To get the docker configuration file, run
+If using an Intel/AMD-based machine, modify the following instructions by replacing "arm" with "and" as needed. To retrieve the Docker configuration file, execute the following command:
 ``` 
-docker cp sankeyarm:Dockerfile . 
+docker cp sankeyarm:Dockerfile .
 ```
-The interpreting scripts for RQ1 to RQ4 are named getSankey.py, RQ2Script.py, RQ3Script.py, RQ4Script.py. To check out those scripts, run
+
+Scripts designated for processing RQ1 to RQ4 are titled getSankey.py, RQ2Script.py, RQ3Script.py, and RQ4Script.py. To access these scripts, execute this command:
 ``` 
 docker cp sankeyarm:getSankey.py .
 docker cp sankeyarm:RQ2Script.py .
@@ -175,21 +172,21 @@ docker cp sankeyarm:commons-textsankey.png .
 Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for Sankey diagrams from other projects. They correspond to Figure 3 of the paper. These diagrams constitute the core results presented in our study.
 
 ### RQ2
-The major results of RQ2 are presented in the terminal, which is presented in Table 2 in the paper
+Results of RQ2 are displayed in the terminal and correspond to the data shown in Table 2 of our paper.
 
 ## RQ3
 Run
 ```
 docker cp sankeyarm:RQ3.pdf .
 ```
-The figure is the one shown in Figure 4 in the paper.
+The illustration referred to here is the same as Figure 4 in our paper.
 
 # RQ4
 Run
 ```
 docker cp sankeyarm:"PrimitiveReturn(36338)Sankey.pdf" .
 ```
-Replace PrimitiveReturn(36338)Sankey.pdf with EmptyObjectReturn(27855)Sankey.pdf/BooleanTrue(44547)Sankey.pdf/BooleanFalse(33633)Sankey.pdf/increment(6515)Sankey.pdf/Math(135194)Sankey.pdf/NullReturns(97187)Sankey.pdf/VoidMethodCall(207997)Sankey.pdf/NegateConditional(439264)Sankey.pdf/ConditionalBoundary(134505)Sankey.pdf for Sankey diagrams from other mutation operators. These figures show the RIPR effects of individual mutation operators as shown in Figure 5 in the paper.
+To view Sankey diagrams for different mutation operators, replace PrimitiveReturn(36338)Sankey.pdf with EmptyObjectReturn(27855)Sankey.pdf, or BooleanTrue(44547)Sankey.pdf, or BooleanFalse(33633)Sankey.pdf, or increment(6515)Sankey.pdf, or Math(135194)Sankey.pdf, or NullReturns(97187)Sankey.pdf, or VoidMethodCall(207997)Sankey.pdf, or NegateConditional(439264)Sankey.pdf, or ConditionalBoundary(134505)Sankey.pdf for Sankey diagrams. These diagrams illustrate the RIPR effects of individual mutation operators, as shown in Figure 5 of our paper. Ensure to include the file names in quotes. 
 
 # Set Up Beyond Docker
 
