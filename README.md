@@ -193,7 +193,7 @@ docker cp sankeyarm:"PrimitiveReturn(36338)Sankey.pdf" .
 ```
 To view Sankey diagrams for different mutation operators, replace PrimitiveReturn(36338)Sankey.pdf with EmptyObjectReturn(27855)Sankey.pdf, or BooleanTrue(44547)Sankey.pdf, or BooleanFalse(33633)Sankey.pdf, or increment(6515)Sankey.pdf, or Math(135194)Sankey.pdf, or NullReturns(97187)Sankey.pdf, or VoidMethodCall(207997)Sankey.pdf, or NegateConditional(439264)Sankey.pdf, or ConditionalBoundary(134505)Sankey.pdf for Sankey diagrams. These diagrams illustrate the RIPR effects of individual mutation operators, as shown in Figure 5 of our paper. Ensure to include the file names in quotes. 
 
-# Set Up Beyond Docker
+# Running Scripts Locally
 
 The Dockerfile provides a minimal example of the experimental configuration. In this section, we delve deeper into the functionalities of different modules used in the experiment.
 
