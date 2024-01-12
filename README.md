@@ -95,7 +95,7 @@ docker cp amd:/commons-text/project/Dockerfile .
 Copy Core Output
 ```
 docker cp amd:/commons-text/project/hashResult.csv .
-docker cp and:/commons-text/project/0sankey.png .
+docker cp amd:/commons-text/project/0sankey.png .
 docker cp amd:/commons-text/project/target/everything/ .
 ```
 
@@ -174,7 +174,7 @@ Run
 ```
 docker cp sankeyarm:commons-text.pdf .
 ```
-Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for Sankey diagrams from other projects. They correspond to Figure 3 of the paper. These diagrams constitute the core results presented in our study.
+Replace commons-text with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j/jfreechart/jline-reader/joda-money/spotify-web-api for Sankey diagrams from other projects. They correspond to Figure 3 of the paper. These diagrams constitute the core results presented in our study.
 
 ### RQ2
 Results of RQ2 are displayed in the terminal and correspond to the data shown in Table 2 of our paper.
