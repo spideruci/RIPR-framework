@@ -61,7 +61,7 @@ For ARM-based laptops:
 
 pull the image and run the container
 ``` 
-docker pull qinfendeheichi/text-arm:latest
+docker pull qinfendeheichi/text-arm:v1
 docker run --name arm qinfendeheichi/text-arm
 ```
 
@@ -84,7 +84,7 @@ docker cp arm:/commons-text/project/target/everything/ .
 
 pull the image and run the container
 ``` 
-docker pull qinfendeheichi/text-amd:latest
+docker pull qinfendeheichi/text-amd:v1
 docker run --name amd qinfendeheichi/text-amd
 ```
 Copy Docker Configuration
@@ -143,13 +143,13 @@ The Docker image is equipped with scripts and configuration settings necessary f
 
 ### For ARM-based machines, run
 ``` 
-docker pull qinfendeheichi/getsankey:latest
+docker pull qinfendeheichi/getsankey:v1
 docker run --name sankeyarm qinfendeheichi/getsankey
 ```
 
 ### For Intel/AMD-based machines, run
 ``` 
-docker pull qinfendeheichi/getsankeyamd:latest
+docker pull qinfendeheichi/getsankeyamd:v1
 docker run --name sankeyamd qinfendeheichi/getsankeyamd
 
 ```
