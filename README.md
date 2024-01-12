@@ -211,7 +211,7 @@ mvn clean install -Dmaven.test.skip
 ```
 
 ## Prepare instrumentation jar files
-Before Running the Experiment for the subject projects, place the corresponding jar files under the subject project's directory that contains the POM file.
+Before running the Experiment for the subject projects, place the corresponding jar files under the subject project's directory that contains the POM file.
 s.jar instruments the production classes, p.jar and t.jar instruments the test classes, which are generated in SourceCodeInstrumente, PreTestInstrumenter, and TestInstrumenter projects. They could be customized and produced individually by running:
 ```
 mvn clean compile assembly:single test-compile
