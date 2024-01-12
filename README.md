@@ -160,9 +160,9 @@ docker cp sankeyarm:Dockerfile .
 The interpreting scripts for RQ1 to RQ4 are named getSankey.py, RQ2Script.py, RQ3Script.py, RQ4Script.py. Replace "arm" with "amd" if the laptop is an Intel/AMD-based machine. To check out those scripts, run
 ``` 
 docker cp sankeyarm:getSankey.py .
-docker cp sankeyarm:getSankey.py .
-docker cp sankeyarm:getSankey.py .
-docker cp sankeyarm:getSankey.py . 
+docker cp sankeyarm:RQ1Script.py .
+docker cp sankeyarm:RQ2Script.py .
+docker cp sankeyarm:RQ3Script.py . 
 ```
 ### RQ1
 
