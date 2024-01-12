@@ -156,7 +156,7 @@ If using an Intel/AMD-based machine, modify the following instructions by replac
 docker cp sankeyarm:Dockerfile .
 ```
 
-Scripts designated for processing RQ1 to RQ4 are titled getSankey.py, RQ2Script.py, RQ3Script.py, and RQ4Script.py. To access these scripts, execute this command:
+Scripts designated for processing RQ1 to RQ4 are titled getSankey.py, RQ2Script.py, RQ3Script.py, and RQ4Script.py. They are expected to run in the container consecutively. To access these scripts, execute this command:
 ``` 
 docker cp sankeyarm:getSankey.py .
 docker cp sankeyarm:RQ2Script.py .
