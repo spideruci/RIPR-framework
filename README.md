@@ -204,3 +204,11 @@ The Dockerfile provides a minimal example of the experimental configuration. In 
 - **SourceCodeInstrumenter**: Instruments the production classes.
 - The corresponding JAR files for these modules are named `p.jar`, `t.jar`, and `s.jar`, respectively.
 
+## Install PITest
+Under the PITest project directory (PIT_STATE_DEV_with_len) Run
+```
+mvn clean install -Dmaven.test.skip
+```
+
+## 
+
