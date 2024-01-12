@@ -174,14 +174,14 @@ Replace cdk-data with commons-cli/commons-codec/commons-validator/cdk-data/dyn4j
 ### RQ2
 Results of RQ2 are displayed in the terminal and correspond to the data shown in Table 2 of our paper.
 
-## RQ3
+### RQ3
 Run
 ```
 docker cp sankeyarm:RQ3.pdf .
 ```
 The illustration referred to here is the same as Figure 4 in our paper.
 
-# RQ4
+### RQ4
 Run
 ```
 docker cp sankeyarm:"PrimitiveReturn(36338)Sankey.pdf" .
