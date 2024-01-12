@@ -30,6 +30,9 @@ pull the image and run the container
 docker pull qinfendeheichi/text-arm:latest
 docker run --name arm qinfendeheichi/text-arm
 ```
+
+To monitor the progress of our analysis, the console will display the count of processed outputs at intervals of every 100 mutants (starting from 0).
+
 Copy Docker Configuration
 This Dockerfile demonstrates a minimal example that contains configuration for Apache commons-text subject program
 ```
