@@ -232,4 +232,7 @@ mvn "-Dmaven.main.skip" pitest:mutationCoverage >info.txt 2>result.txt
 
 The above experimental logic could be reasoned from the Dockerfile we provide in the Docker environment. 
 
+## Partial execution
+To facilitate partial execution of the experiment, one could configure "targetClasses" and "targetTests" can be made through [PIT](https://pitest.org/quickstart/maven/).
+
 
