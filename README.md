@@ -9,7 +9,7 @@ This is an artifact package for the ICSE 2024 paper "Ripples of a Mutation — A
 - [Data](#data)
 - [Demo Setup](#demo-setup)
 - [Usage](#usage)
-- [Set Up Beyond Docker](#set-up-beyond-docker)
+- [Running Scripts Locally](#running-scripts-locally)
   
 # Directory Structure
 1. code: This directory holds the source code of modified PIT, and individual instrumentation code snippets for test classes and production classes.
@@ -199,12 +199,30 @@ To view Sankey diagrams for different mutation operators, replace PrimitiveRetur
 
 The Dockerfile provides a minimal example of the experimental configuration. In this section, we delve deeper into the functionalities of different modules used in the experiment.
 
+## Experimental Pipelines
+The overall process for analyzing the execution of the bug/mutation, infection of the state, propagation of the infection, and revealing the failure (i.e., the RIPR analysis), as well as generating all of the figures in our paper can be described as such:
+
+### Prepare the Subject Project
+The subject projects should 1) utilize the JUnit5 framework. 2) Use Maven as the build system. 3) Ensure compatibility with PITest. 4) Include methods annotated with @BeforeAll and @AfterAll in each test class for probe initialization and state dumping. 5) Prepare an instrumentation utility package by moving the package located under src/test/java/inst to the concerned subject project. 6) Configure xstream, zeroturnaround, and commons-lang3 as dependencies in the project's POM file, referencing the dependencies from an existing subject project’s POM file. 7) Preparation of Instrumentation Jar Files: For the subject projects, it is essential to prepare jar files that are capable of instrumenting both the source code and the test code. This task typically involves configuring the dependencies of the subject project's POM file. Such configuration ensures that the jar files can correctly instrument the target projects. 8) Configure PITest in the subject project. 
+
+### Flakiness Detection
+Analyze each subject program to identify flaky states. For static fields, we store expected hash values in the “dumpstatic” method within the src/test/java/inst/InstrumentationUtils.java file. By configuring this method, states with hash values deviating from the expected ones will be documented in the target/hashdiff file. Flakiness can also be detected by contrasting states obtained from No Mutation Runs (NMRs). For state pollution in static fields, cleaners should be manually added in the cleanStatic method in the InstrumentationUtils.java file. Flakiness across NMRs can be addressed by configuring XStream serialization to blacklist flaky states in the shouldSerializeMember method of the InstrumentationUtils file or by hardcoding them into PIT's code. It's important to iterate this process as necessary, since inadequate flakiness detection might lead to a high exclusion rate.
+
+### Run analysis
+Before running the experiment, create two empty text files named “staticFields.txt” and “GlobalStates.txt” in the directory containing the POM file. This setup is crucial to enable our experiment. Then, execute our customized version of PIT. This specialized version is designed to collect comprehensive data for our experiment. The output from this run will be stored in the “target/everything” directory, encompassing all the raw data necessary for further analysis.
+
+### Data Interpretation
+Convert the raw data in the “target/everything” directory into CSV files. This format conversion facilitates the subsequent data analysis process.
+
+### Script Execution for Data Analysis
+Run each script (one for generating the Sankey diagrams for RQ1, and one for each of the remaining research questions RQ2-RQ4). These scripts take the CSV file as input (hard-coded in scripts) and output their respective analyzed data (Sankey diagram figure, table).
+
+
 ## Code Directory Structure
-- **PIT_STATE_DEV_with_len**: Contains the source code of the modified PIT, customized for our experiment.
-- **PreTestInstrumenter**: Houses source code for instrumenting test classes. This module references variables to a collection.
-- **TestInstrumenter**: Instruments test classes by surrounding test methods with try-catch blocks.
-- **SourceCodeInstrumenter**: Instruments the production classes.
-- The corresponding JAR files for these modules are named `p.jar`, `t.jar`, and `s.jar`, respectively.
+Our customized version of PIT and projects that perform instrumentation can be found under code directory. `PIT_STATE_DEV_with_len` Contains the source code of the modified PIT, customized for our experiment. `PreTestInstrumenter`, `TestInstrumenter`, and `ourceCodeInstrumenter` projects perform instrumentation related to referencing variables to collections for test classes and inserting probes, surrounding methods with try-catch blocks for test classes, and for source-code classes. The corresponding JAR files for these modules are named `p.jar`, `t.jar`, and `s.jar`, respectively.
+The prepared subject projects can be found under subjects directory. 
+The interpreting scripts for RQs and the raw data interpretation template can be found under scripts directory.
+
 
 ## Install PITest
 Under the PITest project directory (PIT_STATE_DEV_with_len) Run
@@ -234,7 +252,6 @@ mvn "-Dmaven.main.skip" pitest:mutationCoverage >info.txt 2>result.txt
 
 The above experimental logic could be reasoned from the Dockerfile we provide in the Docker environment. 
 
-## Partial execution
 To facilitate partial execution of the experiment, one could configure "targetClasses" and "targetTests" can be made through [PIT](https://pitest.org/quickstart/maven/).
 
 
