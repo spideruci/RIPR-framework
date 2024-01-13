@@ -219,9 +219,9 @@ Run each script (one for generating the Sankey diagrams for RQ1, and one for eac
 
 
 ## Code Directory Structure
-Our customized version of PIT and projects that perform instrumentation can be found under code directory. `PIT_STATE_DEV_with_len` Contains the source code of the modified PIT, customized for our experiment. `PreTestInstrumenter`, `TestInstrumenter`, and `ourceCodeInstrumenter` projects perform instrumentation related to referencing variables to collections for test classes and inserting probes, surrounding methods with try-catch blocks for test classes, and for source-code classes. The corresponding JAR files for these modules are named `p.jar`, `t.jar`, and `s.jar`, respectively.
+Our customized version of PIT and projects that perform instrumentation can be found under `code` directory. `PIT_STATE_DEV_with_len` Contains the source code of the modified PIT, customized for our experiment. `PreTestInstrumenter`, `TestInstrumenter`, and `ourceCodeInstrumenter` projects perform instrumentation related to referencing variables to collections for test classes and inserting probes, surrounding methods with try-catch blocks for test classes, and for source-code classes. The corresponding JAR files for these modules are named `p.jar`, `t.jar`, and `s.jar`, respectively.
 The prepared subject projects can be found under subjects directory. 
-The interpreting scripts for RQs and the raw data interpretation template can be found under scripts directory.
+The interpreting scripts for RQs and the raw data interpretation template can be found under `scripts` directory.
 
 
 ## Install PITest
