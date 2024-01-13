@@ -23,12 +23,14 @@ General Requirments on Subject Projects: 1) Subject projects should utilize the 
 # Usage
 ## Basic Usage through Docker Examples:
 
+Make sure that the docker images' ".tar" files exist at the same path of the terminal's working path.
+
 ### For ARM-based laptops:
 
-pull the image and run the container
+load the image and run the container
 ``` 
-docker pull qinfendeheichi/text-arm:v1
-docker run --name arm qinfendeheichi/text-arm
+docker load -i text-arm.tar
+docker run --name arm qinfendeheichi/text-arm:v1
 ```
 
 To monitor the progress of our analysis, the console will display the count of processed outputs at intervals of every 100 mutants (starting from 0).
@@ -48,10 +50,10 @@ docker cp arm:/commons-text/project/target/everything/ .
 
 ### For Intel/AMD-based laptops:
 
-pull the image and run the container
+load the image and run the container
 ``` 
-docker pull qinfendeheichi/text-amd:v1
-docker run --name amd qinfendeheichi/text-amd
+docker load -i text-amd.tar
+docker run --name amd qinfendeheichi/text-amd:v1
 ```
 Copy Docker Configuration
 ```
@@ -77,14 +79,14 @@ The following Docker image is equipped with scripts and configuration settings n
 
 ### For ARM-based machines, run
 ``` 
-docker pull qinfendeheichi/getsankey:v1
-docker run --name sankeyarm qinfendeheichi/getsankey
+docker load -i getsankey.tar
+docker run --name sankeyarm qinfendeheichi/getsankey:v1
 ```
 
 ### For Intel/AMD-based machines, run
 ``` 
-docker pull qinfendeheichi/getsankeyamd:v1
-docker run --name sankeyamd qinfendeheichi/getsankeyamd
+docker load getsankeyamd.tar
+docker run --name sankeyamd qinfendeheichi/getsankeyamd:v1
 
 ```
 
