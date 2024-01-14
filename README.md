@@ -9,7 +9,7 @@ This is an artifact package for the ICSE 2024 paper "Ripples of a Mutation — A
 - [Data](#data)
 - [Demo Setup](#demo-setup)
 - [Usage](#usage)
-- [Running Scripts Locally](#running-scripts-locally)
+- [Reusing Our Framework to Analyze New Subject Programs](#reusing-our-framework-to-analyze-new-subject-programs)
   
 # Directory Structure
 1. code: This directory holds the source code of modified PIT, and individual instrumentation code snippets for test classes and production classes.
@@ -195,50 +195,40 @@ docker cp sankeyarm:"PrimitiveReturn(36338)Sankey.pdf" .
 ```
 To view Sankey diagrams for different mutation operators, replace PrimitiveReturn(36338)Sankey.pdf with EmptyObjectReturn(27855)Sankey.pdf, or BooleanTrue(44547)Sankey.pdf, or BooleanFalse(33633)Sankey.pdf, or increment(6515)Sankey.pdf, or Math(135194)Sankey.pdf, or NullReturns(97187)Sankey.pdf, or VoidMethodCall(207997)Sankey.pdf, or NegateConditional(439264)Sankey.pdf, or ConditionalBoundary(134505)Sankey.pdf for Sankey diagrams. These diagrams illustrate the RIPR effects of individual mutation operators, as shown in Figure 5 of our paper. Ensure to include the file names in quotes. 
 
-# Running Scripts Locally
+# Reusing Our Framework to Analyze New Subject Programs
 
-The Dockerfile provides a minimal example of the experimental configuration. In this section, we delve deeper into the functionalities of different modules used in the experiment.
-
-## Experimental Pipelines
 The overall process for analyzing the execution of the bug/mutation, infection of the state, propagation of the infection, and revealing the failure (i.e., the RIPR analysis), as well as generating all of the figures in our paper can be described as such:
 
-### Prepare the Subject Project
-The subject projects should 1) utilize the JUnit5 framework. 2) Use Maven as the build system. 3) Ensure compatibility with PITest. 4) Include methods annotated with @BeforeAll and @AfterAll in each test class for probe initialization and state dumping. 5) Prepare an instrumentation utility package by moving the package located under src/test/java/inst to the concerned subject project. 6) Configure xstream, zeroturnaround, and commons-lang3 as dependencies in the project's POM file, referencing the dependencies from an existing subject project’s POM file. 7) Preparation of Instrumentation Jar Files: For the subject projects, it is essential to prepare jar files that are capable of instrumenting both the source code and the test code. This task typically involves configuring the dependencies of the subject project's POM file. Such configuration ensures that the jar files can correctly instrument the target projects. 8) Configure PITest in the subject project. 
+1. Choose New Subject Project: First, subject programs should be chosen based upon the following criteria: they should (1) utilize the JUnit5 framework; (2) use Maven as the build system; (3) ensure compatibility with PITest. If these criteria are not met, the subject program would need to be adapted to fit the criteria.
 
-### Flakiness Detection
-Analyze each subject program to identify flaky states. For static fields, we store expected hash values in the “dumpstatic” method within the src/test/java/inst/InstrumentationUtils.java file. By configuring this method, states with hash values deviating from the expected ones will be documented in the target/hashdiff file. Flakiness can also be detected by contrasting states obtained from No Mutation Runs (NMRs). For state pollution in static fields, cleaners should be manually added in the cleanStatic method in the InstrumentationUtils.java file. Flakiness across NMRs can be addressed by configuring XStream serialization to blacklist flaky states in the shouldSerializeMember method of the InstrumentationUtils file or by hardcoding them into PIT's code. It's important to iterate this process as necessary, since inadequate flakiness detection might lead to a high exclusion rate.
+2. Prepare the Subject Project: Modify (by hand) the subject program in the following ways
+   
+- 2.1 Include methods annotated with @BeforeAll and @AfterAll in each test class for probe initialization and state dumping. If the test class already has these methods, that is fine. If it does not, introduce empty methods with these annotations — these will be used by the instrument.
 
-### Run analysis
-Before running the experiment, create two empty text files named “staticFields.txt” and “GlobalStates.txt” in the directory containing the POM file. This setup is crucial to enable our experiment. Then, execute our customized version of PIT. This specialized version is designed to collect comprehensive data for our experiment. The output from this run will be stored in the “target/everything” directory, encompassing all the raw data necessary for further analysis.
+- 2.2 Prepare an instrumentation utility package by moving the package located under src/test/java/inst to the concerned subject project. We will be making some changes to this in a future step, but for now, simply copying an existing package works fine.
 
-### Data Interpretation
-Convert the raw data in the “target/everything” directory into CSV files. This format conversion facilitates the subsequent data analysis process.
+- 2.3 Configure xstream, zeroturnaround, and commons-lang3 as dependencies in the project's POM file, referencing the dependencies from an existing subject project’s POM file. 
 
-### Script Execution for Data Analysis
-Run each script (one for generating the Sankey diagrams for RQ1, and one for each of the remaining research questions RQ2-RQ4). These scripts take the CSV file as input (hard-coded in scripts) and output their respective analyzed data (Sankey diagram figure, table).
+- 2.4 Prepare Instrumentation Jar Files: For the subject projects, it is essential to prepare jar files that are capable of instrumenting both the source code and the test code. This task typically involves configuring the dependencies of the subject project's POM file. Such configuration ensures that the jar files can correctly instrument the target projects. In the GitHub repository, there is a directory called “code”, which has contained directories of “PreTestInstrumenter”, “TestInstrumenter”, and “sourceCodeInstrumenter”. In your local repository, in each of these subdirectories, copy their Maven configuration to their POM files as dependencies. Then, compile and install each of these tools in these directories. This would produce three jar files under target directory, named, “p.jar”, “t.jar”, and “s.jar”. Move them to the subject directory at the same level of the subject program’s POM file.
 
+- 2.5 Install our modified PITest, which is found in the directory code/PIT_STATE_DEV_with_len, by running “maven clean install -Dmaven.test.skip” in that directory. Configure our modified PITest for your new subject project by following the instructions given by the original PIT project.
 
-## Code Directory Structure
-Our customized version of PIT and projects that perform instrumentation can be found under `code` directory. `PIT_STATE_DEV_with_len` Contains the source code of the modified PIT, customized for our experiment. `PreTestInstrumenter`, `TestInstrumenter`, and `ourceCodeInstrumenter` projects perform instrumentation related to referencing variables to collections for test classes and inserting probes, surrounding methods with try-catch blocks for test classes, and for source-code classes. The corresponding JAR files for these modules are named `p.jar`, `t.jar`, and `s.jar`, respectively.
-The prepared subject projects can be found under subjects directory. 
-The interpreting scripts for RQs and the raw data interpretation template can be found under `scripts` directory.
+- 2.6 Run a pre-analysis to initialize the static field hashcodes, by creating two empty text files named “staticFields.txt” and “GlobalStates.txt” in the directory containing 
+the POM file, and then, executing our customized version of PIT. Follow the official PIT instructions to run PIT.
 
+- 2.7 Customize the instrumentation utility package. Begin by examining our subject programs’ src/test/java/inst directories to learn how to adapt them to your new subject program. Each subject program requires some customization. The steps involved are:
 
-## Install PITest
-Under the PITest project directory (PIT_STATE_DEV_with_len) Run
-```
-mvn clean install -Dmaven.test.skip
-```
+  - 2.7.1 Customization 1: Clean polluted static fields. We attempt to clean any static fields that are polluted between test runs, or even between mutations, by observing their state for multiple runs. To do this: Identify the hash code of static fields dumped under “target/staticFields/” directory. Then hard code the hash value of static fields under dumpStatic method in InstrumentationUtils.java file. This method performs checks on the hash value of static fields which are not the same as the hard-coded ones. Then run the analysis again. If “target/staticFields/” directory is not empty, it indicates some dumped static fields’ hash code is not the same as the hard-coded one. If so, perform diffs between two dumped xml files, identify the polluted portion, and write cleaners to overwrite the polluted states in clearStatic method in the same file. To inform this process, examine the existing subject programs’ clearStatic methods.
 
-## Prepare instrumentation jar files
-Before running the Experiment for the subject projects, place the corresponding jar files under the subject project's directory that contains the POM file.
-s.jar instruments the production classes, p.jar and t.jar instruments the test classes, which are generated in SourceCodeInstrumente, PreTestInstrumenter, and TestInstrumenter projects. They could be customized and produced individually by running:
-```
-mvn clean compile assembly:single test-compile
-```
+  - 2.7.2 Customization 2: Ignore flaky state. We attempt to ignore states that are nondeterministic (for example, random values, hash codes, date/time values, etc.) so that they do not affect our analyses. This step can be performed at this step and/or augmented as the experiment matures. You will likely augment this step as you learn more about your subject program and its analysis. To do this, analyze each subject program to identify flaky states in a similar way that we identified polluted static fields in Customization 1. Identify the flakiness across 10 NMRs (no mutation runs) by comparing dumped states under the NMR directory of each mutation directory. Then put specific portions of states to be ignored under the shouldSerializeMember method. 
 
-## Run mutation analysis
-Run:
+3. Run Analysis: Before running the experiment, ensure that the two text files named “staticFields.txt” and “GlobalStates.txt” are in the directory containing the POM file (from Step 2f). Then, execute our customized version of PIT. This specialized version is designed to collect comprehensive data for our experiment. The output from this run will be stored in the “target/everything” directory, encompassing all the raw data necessary for further analysis.
+
+4. Interpret Data: Convert the raw data in the “target/everything” directory into CSV files. This format conversion facilitates the subsequent data analysis process. This conversion is performed by a script that may need to be customized per subject program. Use the script provided for commons-text in the Docker container as a baseline for your conversion, and if it crashes and needs some specialization, you may need to investigate and modify our script accordingly.
+  
+5. Execute Scripts for Data Analysis: Run each script (one for generating the Sankey diagrams for RQ1, and one for each of the remaining research questions RQ2–RQ4). 
+These scripts take the CSV file as input (hard-coded in scripts) and output their respective analyzed data (Sankey diagram figure, table).
+Run anyalsis by executing:
 ```
 mvn clean compile test-compile
 cp staticFields.txt target
@@ -250,8 +240,11 @@ java -jar "s.jar" target/classes
 mvn "-Dmaven.main.skip" pitest:mutationCoverage >info.txt 2>result.txt
 ```
 
-The above experimental logic could be reasoned from the Dockerfile we provide in the Docker environment. 
+Also, depending on the chosen subject program, you may also encounter additional challenges such as flaky states introduced by mocked objects, difficulties with compatibility with Xstream, and static fields that have private or protected modifiers. In such cases, some modifications to the subject programs may be necessary (such as making a private static field to be public, or customize the instrumentation to not collect states for mocked variables). These challenges cannot be exhaustively predicted, and will need to be addressed as they are discovered.
 
-To facilitate partial execution of the experiment, one could configure "targetClasses" and "targetTests" can be made through [PIT](https://pitest.org/quickstart/maven/).
+Our customized version of PIT and projects that perform instrumentation can be found under the code directory. PreTestInstrumenter, TestInstrumenter, and sourceCodeInstrumenter projects perform instrumentation related to referencing variables to collections for test classes and inserting probes, surrounding methods with try-catch blocks for test classes, and for source-code classes. 
+The prepared subject projects can be found under the subjects directory. 
+The interpreting scripts for RQs and the raw data interpretation template can be found under scripts directory.
+
 
 
