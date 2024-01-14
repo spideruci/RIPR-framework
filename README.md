@@ -106,7 +106,9 @@ docker cp amd:/commons-text/project/target/everything/ .
 **0sankey.png:** demonstrates an example of localized RIPR analysis for a specific production class and test class for the Apache commons-text subject program. 
 **everything directory:** This directory houses the raw data organization structure. Each compressed (zip) file within this directory encapsulates data pertaining to a specific mutation. More explanation is in the artifact package.
 
-In this scenario, we engage with 7 mutants, encompassing 12 passing and 11 failing mutation test runs. All mutants are killed, achieving an infection and propagation rate of 100%. The data can be reasoned through the Sankey diagram and corresponding CSV files.
+Expected results if analysis runs correctly:
+The hashResult.csv file should contain 33 lines, each representing a test run. 12 of these will show that the test passed, and 11 of them will show that the test failed. Additionally, there should be seven zip files, each representing one mutant, under target/everything directory.
+
 
 ## Raw Data Explanation
 
