@@ -67,7 +67,7 @@ docker load -i text-arm.tar
 docker run --name arm qinfendeheichi/text-arm:v1
 ```
 
-To monitor the progress of our analysis, the console will display the count of processed outputs at intervals of every 100 mutants (starting from 0).
+To monitor the progress of our analysis, the console will display the count of processed outputs at intervals of every 100 mutants (starting from 0). If there are less than 100 mutations, the console will print "processed 0 mutations", which is not an error. 
 
 Copy Docker Configuration
 This Dockerfile demonstrates a minimal example that contains configuration for the Apache commons-text subject program
