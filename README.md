@@ -5,6 +5,8 @@ https://github.com/spideruci/RIPR-framework
 # Introduction
 - This is an open-source artifact that provides: (1) a functional and scalable implementation of the RIPR (Reachability, Infection, Propagation, and Reveal)  analysis framework for mutants; (2) designated subject projects for RIPR analysis, as discussed in this paper; and (3) the pertinent dataset.
 
+The main artefact is placed under RIPR-framework.zip file, along with four individual Docker images.
+
 # Table of Contents
 - [Directory structure](#directory-structure)
 - [Data](#data)
